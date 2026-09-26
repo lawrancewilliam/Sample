@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lawrance William | Developer Portfolio</title>
+
+<style>
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#050816;
+    --bg2:#090d1d;
+    --card:rgba(255,255,255,.055);
+    --border:rgba(255,255,255,.10);
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --blue:#3b82f6;
+    --cyan:#22d3ee;
+    --purple:#8b5cf6;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+::selection{
+    background:#3b82f6;
+    color:white;
+}
+
+/* =====================================================
+   SCROLL BAR
+===================================================== */
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050816;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(var(--blue),var(--purple));
+    border-radius:20px;
+}
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+#progress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:3px;
+    width:0;
+    z-index:99999;
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--blue),
+        var(--purple)
+    );
+    box-shadow:0 0 15px var(--blue);
+}
+
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
+
+.grid-background{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+
+    background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+
+    background-size:60px 60px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+}
+
+/* =====================================================
+   MOUSE GLOW
+===================================================== */
+
+.mouse-glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(59,130,246,.10);
+    filter:blur(100px);
+    pointer-events:none;
+    z-index:-4;
+    transform:translate(-50%,-50%);
+}
+
+/* =====================================================
+   ANIMATED BLOBS
+===================================================== */
+
+.blob{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.22;
+    z-index:-3;
+}
+
+.blob1{
+    width:500px;
+    height:500px;
+    background:#2563eb;
+    top:-180px;
+    left:-150px;
+    animation:blob1 14s infinite alternate ease-in-out;
+}
+
+.blob2{
+    width:450px;
+    height:450px;
+    background:#7c3aed;
+    right:-120px;
+    top:30%;
+    animation:blob2 16s infinite alternate ease-in-out;
+}
+
+.blob3{
+    width:350px;
+    height:350px;
+    background:#0891b2;
+    bottom:-100px;
+    left:35%;
+    animation:blob3 18s infinite alternate ease-in-out;
+}
+
+@keyframes blob1{
+    to{
+        transform:translate(180px,120px) scale(1.2);
+    }
+}
+
+@keyframes blob2{
+    to{
+        transform:translate(-200px,-100px) scale(.8);
+    }
+}
+
+@keyframes blob3{
+    to{
+        transform:translate(100px,-150px) scale(1.3);
+    }
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.nav-wrapper{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(1100px,92%);
+    z-index:1000;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:14px 20px;
+
+    border:1px solid var(--border);
+    border-radius:18px;
+
+    background:rgba(5,8,22,.60);
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.25),
+        inset 0 1px rgba(255,255,255,.05);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:var(--blue);
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:8px;
+}
+
+nav a{
+    display:block;
+    padding:9px 14px;
+    border-radius:10px;
+
+    color:#cbd5e1;
+    text-decoration:none;
+    font-size:14px;
+
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+    background:rgba(255,255,255,.07);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    min-height:100vh;
+
+    max-width:1200px;
+    margin:auto;
+
+    padding:160px 35px 100px;
+
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    align-items:center;
+    gap:80px;
+}
+
+.status{
+    width:max-content;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:8px 14px;
+
+    border:1px solid rgba(34,211,238,.25);
+    border-radius:50px;
+
+    background:rgba(34,211,238,.06);
+
+    color:#67e8f9;
+
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+
+    background:#22c55e;
+
+    border-radius:50%;
+
+    box-shadow:0 0 12px #22c55e;
+
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.5);
+        opacity:.5;
+    }
+}
+
+.hero h1{
+    font-size:clamp(55px,7vw,92px);
+    line-height:.95;
+    letter-spacing:-5px;
+    margin-bottom:28px;
+}
+
+.gradient-text{
+    color:transparent;
+
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #22d3ee,
+        #a78bfa,
+        #60a5fa
+    );
+
+    background-size:300%;
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    animation:gradientMove 6s linear infinite;
+}
+
+@keyframes gradientMove{
+    to{
+        background-position:300%;
+    }
+}
+
+.role{
+    min-height:35px;
+
+    font-size:23px;
+    color:#cbd5e1;
+
+    margin-bottom:22px;
+}
+
+#typing{
+    color:#60a5fa;
+    font-weight:600;
+}
+
+.cursor-line{
+    color:#22d3ee;
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0}
+}
+
+.hero-description{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:17px;
+    max-width:650px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    position:relative;
+    overflow:hidden;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+    font-weight:600;
+
+    transition:.35s;
+}
+
+.btn-primary{
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    box-shadow:0 10px 30px rgba(37,99,235,.25);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 40px rgba(37,99,235,.4);
+}
+
+.btn-secondary{
+    color:white;
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.04);
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,.1);
+    transform:translateY(-4px);
+}
+
+/* =====================================================
+   HERO CODE WINDOW
+===================================================== */
+
+.visual{
+    position:relative;
+    perspective:1000px;
+}
+
+.code-window{
+    position:relative;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.02)
+        );
+
+    backdrop-filter:blur(20px);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.5),
+        0 0 60px rgba(59,130,246,.08);
+
+    animation:float 5s ease-in-out infinite;
+
+    transform-style:preserve-3d;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+.code-top{
+    height:48px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 18px;
+
+    border-bottom:1px solid var(--border);
+
+    background:rgba(255,255,255,.025);
+}
+
+.dots{
+    display:flex;
+    gap:7px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.red{background:#fb7185}
+.yellow{background:#facc15}
+.green{background:#4ade80}
+
+.file-name{
+    margin:auto;
+    margin-left:110px;
+
+    color:#64748b;
+    font-size:12px;
+}
+
+.code{
+    padding:30px;
+
+    font-family:"Courier New",monospace;
+
+    font-size:14px;
+    line-height:2;
+
+    color:#cbd5e1;
+}
+
+.purple{color:#c084fc}
+.blue{color:#60a5fa}
+.green-text{color:#4ade80}
+.orange{color:#fb923c}
+.grey{color:#64748b}
+
+/* =====================================================
+   FLOATING BADGES
+===================================================== */
+
+.floating-badge{
+    position:absolute;
+
+    padding:10px 15px;
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    background:rgba(15,23,42,.85);
+    backdrop-filter:blur(15px);
+
+    font-size:13px;
+
+    box-shadow:0 15px 30px rgba(0,0,0,.3);
+}
+
+.badge1{
+    top:-35px;
+    right:-30px;
+    animation:badgeFloat 4s infinite alternate;
+}
+
+.badge2{
+    bottom:-30px;
+    left:-30px;
+    animation:badgeFloat 5s infinite alternate-reverse;
+}
+
+@keyframes badgeFloat{
+    to{
+        transform:translateY(15px) rotate(2deg);
+    }
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+section{
+    padding:110px 30px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-heading{
+    margin-bottom:60px;
+}
+
+.section-label{
+    color:#60a5fa;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.section-heading h2{
+    font-size:clamp(38px,5vw,60px);
+    margin-top:12px;
+    letter-spacing:-2px;
+}
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+}
+
+.about-text{
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.9;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.stat{
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    border-radius:18px;
+
+    padding:28px;
+
+    transition:.35s;
+}
+
+.stat:hover{
+    transform:translateY(-6px);
+    border-color:rgba(96,165,250,.5);
+    background:rgba(59,130,246,.08);
+}
+
+.stat-number{
+    font-size:35px;
+    font-weight:800;
+
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #a78bfa
+    );
+
+    color:transparent;
+    background-clip:text;
+}
+
+.stat p{
+    margin-top:8px;
+    color:#64748b;
+    font-size:14px;
+}
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+.skills-section{
+    position:relative;
+}
+
+.skill-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.skill-card{
+    position:relative;
+    overflow:hidden;
+
+    padding:28px 20px;
+
+    border:1px solid var(--border);
+    border-radius:16px;
+
+    background:var(--card);
+
+    text-align:center;
+
+    transition:.35s;
+}
+
+.skill-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    background:var(--blue);
+
+    filter:blur(70px);
+
+    opacity:0;
+
+    top:-60px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    transition:.4s;
+}
+
+.skill-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(59,130,246,.5);
+}
+
+.skill-card:hover::before{
+    opacity:.4;
+}
+
+.skill-icon{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.skill-card h3{
+    font-size:15px;
+}
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.project{
+    position:relative;
+    overflow:hidden;
+
+    min-height:360px;
+
+    padding:30px;
+
+    display:flex;
+    flex-direction:column;
+
+    border:1px solid var(--border);
+    border-radius:22px;
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.015)
+    );
+
+    transition:.4s;
+}
+
+.project::before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    top:-150px;
+    right:-100px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    filter:blur(90px);
+
+    opacity:.1;
+
+    transition:.4s;
+}
+
+.project:hover{
+    transform:translateY(-12px);
+    border-color:rgba(96,165,250,.5);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.35);
+}
+
+.project:hover::before{
+    opacity:.35;
+}
+
+.project-number{
+    color:#475569;
+    font-size:13px;
+    margin-bottom:60px;
+}
+
+.project-tag{
+    width:max-content;
+
+    padding:6px 10px;
+
+    border:1px solid rgba(96,165,250,.2);
+    border-radius:50px;
+
+    color:#60a5fa;
+
+    font-size:11px;
+
+    margin-bottom:15px;
+}
+
+.project h3{
+    font-size:28px;
+    margin-bottom:14px;
+}
+
+.project p{
+    color:#94a3b8;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.project-stack{
+    margin-top:auto;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+
+    padding-top:25px;
+}
+
+.project-stack span{
+    padding:6px 9px;
+
+    border-radius:6px;
+
+    background:rgba(255,255,255,.05);
+
+    color:#64748b;
+
+    font-size:11px;
+}
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-box{
+    position:relative;
+    overflow:hidden;
+
+    text-align:center;
+
+    padding:90px 30px;
+
+    border:1px solid var(--border);
+    border-radius:30px;
+
+    background:linear-gradient(
+        145deg,
+        rgba(59,130,246,.09),
+        rgba(139,92,246,.06)
+    );
+}
+
+.contact-box::after{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:200px;
+
+    bottom:-180px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#2563eb;
+
+    filter:blur(100px);
+
+    opacity:.3;
+}
+
+.contact-box h2{
+    font-size:clamp(40px,6vw,70px);
+    letter-spacing:-3px;
+    margin-bottom:20px;
+}
+
+.contact-box p{
+    color:#94a3b8;
+    max-width:550px;
+    margin:0 auto 30px;
+    line-height:1.7;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    max-width:1100px;
+    margin:auto;
+
+    padding:30px;
+
+    display:flex;
+    justify-content:space-between;
+
+    border-top:1px solid var(--border);
+
+    color:#64748b;
+
+    font-size:13px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        gap:80px;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+
+    .visual{
+        max-width:600px;
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .skill-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .project{
+        min-height:300px;
+    }
+}
+
+@media(max-width:550px){
+
+    .hero{
+        padding-left:22px;
+        padding-right:22px;
+    }
+
+    section{
+        padding-left:22px;
+        padding-right:22px;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .role{
+        font-size:18px;
+    }
+
+    .skill-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .floating-badge{
+        display:none;
+    }
+
+    .file-name{
+        margin-left:auto;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PROGRESS -->
+<div id="progress"></div>
+
+<!-- BACKGROUND -->
+<div class="grid-background"></div>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<div class="mouse-glow" id="mouseGlow"></div>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="nav-wrapper">
+
+<nav>
+
+<div class="logo">
+Lawrance<span>.</span>
+</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+</div>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="status">
+<span class="status-dot"></span>
+Available for opportunities
+</div>
+
+<h1>
+Lawrance<br>
+<span class="gradient-text">William.</span>
+</h1>
+
+<div class="role">
+I build
+<span id="typing"></span>
+<span class="cursor-line">|</span>
+</div>
+
+<p class="hero-description">
+
+MCA student and Full-Stack Developer passionate about building
+modern web applications, AI-powered systems and secure digital
+experiences.
+
+I enjoy transforming ideas into functional, scalable and
+beautiful products.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#projects" class="btn btn-primary">
+Explore My Work →
+</a>
+
+<a href="#contact" class="btn btn-secondary">
+Let's Connect
+</a>
+
+</div>
+
+</div>
+
+
+<!-- CODE CARD -->
+
+<div class="visual">
+
+<div class="floating-badge badge1">
+⚡ Full-Stack Developer
+</div>
+
+<div class="floating-badge badge2">
+🤖 AI + Security
+</div>
+
+<div class="code-window" id="tiltCard">
+
+<div class="code-top">
+
+<div class="dots">
+<div class="dot red"></div>
+<div class="dot yellow"></div>
+<div class="dot green"></div>
+</div>
+
+<div class="file-name">
+lawrance.js
+</div>
+
+</div>
+
+<div class="code">
+
+<span class="purple">const</span>
+<span class="blue">developer</span> = {<br>
+
+&nbsp;&nbsp;name:
+<span class="green-text">"Lawrance William"</span>,<br>
+
+&nbsp;&nbsp;role:
+<span class="green-text">"Full-Stack Developer"</span>,<br>
+
+&nbsp;&nbsp;education:
+<span class="green-text">"MCA"</span>,<br>
+
+&nbsp;&nbsp;passion: [<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="green-text">"Web Development"</span>,<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="green-text">"Artificial Intelligence"</span>,<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="green-text">"Cyber Security"</span><br>
+
+&nbsp;&nbsp;],<br>
+
+&nbsp;&nbsp;currentlyBuilding:
+<span class="orange">true</span><br>
+
+};<br><br>
+
+<span class="grey">// Keep learning. Keep building.</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+<div class="container reveal">
+
+<div class="section-heading">
+
+<span class="section-label">
+01 / ABOUT
+</span>
+
+<h2>
+Building ideas into<br>
+<span class="gradient-text">real products.</span>
+</h2>
+
+</div>
+
+
+<div class="about-grid">
+
+<div class="about-text">
+
+I'm an MCA postgraduate student with a background in Computer
+Science and a strong interest in modern web development,
+Artificial Intelligence and application security.
+
+<br><br>
+
+I enjoy working on projects where technology solves real
+problems — from CRM platforms and finance applications to
+AI-assisted security systems.
+
+<br><br>
+
+My goal is simple: continuously learn, build better software
+and create products that actually matter.
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-number">03+</div>
+<p>Major Projects</p>
+</div>
+
+<div class="stat">
+<div class="stat-number">Full</div>
+<p>Stack Development</p>
+</div>
+
+<div class="stat">
+<div class="stat-number">AI</div>
+<p>Driven Projects</p>
+</div>
+
+<div class="stat">
+<div class="stat-number">∞</div>
+<p>Learning Mindset</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SKILLS ================= -->
+
+<section id="skills" class="skills-section">
+
+<div class="container reveal">
+
+<div class="section-heading">
+
+<span class="section-label">
+02 / SKILLS
+</span>
+
+<h2>
+My development<br>
+<span class="gradient-text">toolkit.</span>
+</h2>
+
+</div>
+
+
+<div class="skill-grid">
+
+<div class="skill-card">
+<div class="skill-icon">🌐</div>
+<h3>HTML & CSS</h3>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">⚡</div>
+<h3>JavaScript</h3>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">🔥</div>
+<h3>SvelteKit</h3>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">🐍</div>
+<h3>Python</h3>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">⚙️</div>
+<h3>Node.js</h3>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">🗄️</div>
+<h3>Supabase</h3>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">🐙</div>
+<h3>Git & GitHub</h3>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">🤖</div>
+<h3>AI / ML</h3>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section id="projects">
+
+<div class="container reveal">
+
+<div class="section-heading">
+
+<span class="section-label">
+03 / PROJECTS
+</span>
+
+<h2>
+Things I've<br>
+<span class="gradient-text">built.</span>
+</h2>
+
+</div>
+
+
+<div class="projects">
+
+
+<!-- PROJECT 1 -->
+
+<div class="project">
+
+<div class="project-number">
+01
+</div>
+
+<div class="project-tag">
+AI + SECURITY
+</div>
+
+<h3>SecurAI</h3>
+
+<p>
+
+AI-assisted sensitive data leakage detection and risk
+assessment platform designed to identify secrets,
+credentials and sensitive information inside software
+projects.
+
+</p>
+
+<div class="project-stack">
+
+<span>Python</span>
+<span>AI / ML</span>
+<span>SvelteKit</span>
+<span>Security</span>
+
+</div>
+
+</div>
+
+
+<!-- PROJECT 2 -->
+
+<div class="project">
+
+<div class="project-number">
+02
+</div>
+
+<div class="project-tag">
+FULL-STACK CRM
+</div>
+
+<h3>SymphoReach</h3>
+
+<p>
+
+A modern CRM platform for managing customers, enquiries,
+leads, quotations, payments, marketing channels and complete
+business workflows.
+
+</p>
+
+<div class="project-stack">
+
+<span>SvelteKit</span>
+<span>Supabase</span>
+<span>PostgreSQL</span>
+<span>CRM</span>
+
+</div>
+
+</div>
+
+
+<!-- PROJECT 3 -->
+
+<div class="project">
+
+<div class="project-number">
+03
+</div>
+
+<div class="project-tag">
+FINTECH
+</div>
+
+<h3>Pocket Money Tracker</h3>
+
+<p>
+
+Personal finance management platform for tracking income,
+expenses, savings, budgets and financial goals through a
+simple dashboard.
+
+</p>
+
+<div class="project-stack">
+
+<span>JavaScript</span>
+<span>Node.js</span>
+<span>Google Sheets</span>
+<span>Finance</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+<div class="container reveal">
+
+<div class="contact-box">
+
+<span class="section-label">
+04 / CONTACT
+</span>
+
+<h2>
+Have an idea?<br>
+<span class="gradient-text">
+Let's build it.
+</span>
+</h2>
+
+<p>
+
+I'm always interested in discussing development,
+collaborations, interesting projects and new opportunities.
+
+</p>
+
+<a
+href="mailto:yourmail@example.com"
+class="btn btn-primary"
+>
+Start a Conversation →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div>
+© 2026 Lawrance William
+</div>
+
+<div>
+Designed & Built with ❤️
+</div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   TYPING EFFECT
+===================================================== */
+
+const words = [
+    "modern web apps.",
+    "AI-powered systems.",
+    "secure applications.",
+    "digital experiences."
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const typingElement =
+document.getElementById("typing");
+
+function type(){
+
+    const currentWord =
+    words[wordIndex];
+
+    if(!deleting){
+
+        typingElement.textContent =
+        currentWord.substring(
+            0,
+            charIndex + 1
+        );
+
+        charIndex++;
+
+        if(charIndex === currentWord.length){
+
+            deleting = true;
+
+            setTimeout(type,1500);
+
+            return;
+        }
+
+    }else{
+
+        typingElement.textContent =
+        currentWord.substring(
+            0,
+            charIndex - 1
+        );
+
+        charIndex--;
+
+        if(charIndex === 0){
+
+            deleting = false;
+
+            wordIndex =
+            (wordIndex + 1) %
+            words.length;
+        }
+    }
+
+    setTimeout(
+        type,
+        deleting ? 45 : 80
+    );
+}
+
+type();
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target
+.classList
+.add("active");
+
+}
+
+});
+
+},
+{
+threshold:.15
+}
+);
+
+reveals.forEach(
+el => observer.observe(el)
+);
+
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const scrollTop =
+document.documentElement.scrollTop;
+
+const height =
+document.documentElement.scrollHeight -
+document.documentElement.clientHeight;
+
+const progress =
+(scrollTop / height) * 100;
+
+document
+.getElementById("progress")
+.style.width =
+progress + "%";
+
+}
+);
+
+
+/* =====================================================
+   MOUSE GLOW
+===================================================== */
+
+const glow =
+document.getElementById("mouseGlow");
+
+document.addEventListener(
+"mousemove",
+e=>{
+
+glow.style.left =
+e.clientX + "px";
+
+glow.style.top =
+e.clientY + "px";
+
+}
+);
+
+
+/* =====================================================
+   3D TILT CARD
+===================================================== */
+
+const card =
+document.getElementById("tiltCard");
+
+card.addEventListener(
+"mousemove",
+e=>{
+
+const rect =
+card.getBoundingClientRect();
+
+const x =
+e.clientX - rect.left;
+
+const y =
+e.clientY - rect.top;
+
+const centerX =
+rect.width / 2;
+
+const centerY =
+rect.height / 2;
+
+const rotateX =
+((y - centerY) / centerY) * -5;
+
+const rotateY =
+((x - centerX) / centerX) * 5;
+
+card.style.transform =
+`
+perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+translateY(-8px)
+`;
+
+}
+);
+
+card.addEventListener(
+"mouseleave",
+()=>{
+
+card.style.transform =
+"perspective(1000px) rotateX(0) rotateY(0)";
+
+}
+);
+
+</script>
+
+</body>
+</html>
